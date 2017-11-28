@@ -6,6 +6,23 @@
 ```
 build:main": "babel --copy-files --out-dir dist src"
 ```
+The *npm* package may be used in a pure ES5 environment, without ```babel``` transpiler, so we need `babel` to transform our ES6 modules - the default is `commonjs` - this can be overrided in `./.babelrc` 
+```
+"env": {
+    "test": {
+      "presets": ["es2015"],
+      "plugins": ["lodash"] 
+    },
+    "production": {
+      "presets": [["es2015", { "modules": false }]],
+      "plugins": ["lodash"]
+    },
+```
+In our case we leave the default like the 'test' example above, and don't require the *"env":* object
+```
+"presets": ["es2015"],
+```
+
 ## UMD bundled ES5 with babel-runtime
 * The browser ready **umd** files are bundled with *webpack*, and use the *webpack babel loader* and also the *babel runtime* (this is a **dependency**)
 * The `babel runtime` is setup in `.babelrc` - any required *helpers* and *polyfills* are referenced through ```node_module``` *require* imports during *transpilation*, and *webpack* bundles these runtime dependencies into the distributed *umd.js* files. 
