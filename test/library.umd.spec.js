@@ -18,6 +18,11 @@ describe('Given an instance of my Cat library', () => {
       expect(lib.name).to.be.equal('Cat');
     });
   });
+  describe('when I need the sound', () => {
+    it('should return the sound', () => {
+      expect(lib.sound).to.be.equal('Meow');
+    });
+  });
 });
 
 describe('Given an instance of my Dog library', () => {
