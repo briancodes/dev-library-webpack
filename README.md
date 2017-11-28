@@ -26,7 +26,7 @@ In our case we leave the default like the 'test' example above, and don't requir
 ## UMD bundled ES5 with babel-runtime
 * The browser ready **umd** files are bundled with *webpack*, and use the *webpack babel loader* and also the *babel runtime* (this is a **dependency**)
 * The `babel runtime` is setup in `.babelrc` - any required *helpers* and *polyfills* are referenced through ```node_module``` *require* imports during *transpilation*, and *webpack* bundles these runtime dependencies into the distributed *umd.js* files. 
-* The `dist/index.js` and it's associated files will include the `require` imports also, but of course are not bundled. 
+* The `dist/index.js` and it's associated files will include these `babel-runtime` helper/polyfill `require` import statments also, but are not bundled at this point
 
 
 # Webpack library starter
