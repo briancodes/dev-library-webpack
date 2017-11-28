@@ -2,10 +2,14 @@
   "name": "webpack-library-starter",
   "version": "1.0.2",
   "description": "Produce universal library with webpack and es6",
-  "main": "lib/library.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "webpack --env dev && webpack --env build && npm run test",
-    "dev": "webpack --progress --colors --watch --env dev",
+    "build-all": "npm run clean && npm-run-all --parallel build:* && npm run test",
+    "clean": "rimraf dist/*",
+    "build:main": "babel --copy-files --out-dir dist src",
+    "build:umd": "webpack --env dev",
+    "build:umd.min": "webpack --env build",
+    "dev:umd": "webpack --progress --colors --watch --env dev",
     "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
   },
@@ -39,6 +43,8 @@
     "eslint": "^4.12.0",
     "eslint-loader": "^1.9.0",
     "mocha": "^4.0.1",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
     "webpack": "^3.8.1",
     "yargs": "^10.0.3"
   }
