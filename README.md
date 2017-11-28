@@ -1,3 +1,17 @@
+# Key Updates
+## npm publish ready - ES5 index.js module and files
+* Should be able to run ```node ./dist/``` and the default ```index.js``` will execute
+*  For this to work, the `src/index.js`, which has ES6 `import` and `export`, needs to be transpiled by `babel`, but not `webpack` *bundled*. It will replicate a *node_modules* package in this state
+* The *package.json* will have ```"main": "dist/index.js",``` for publishing to `npm`
+```
+build:main": "babel --copy-files --out-dir dist src"
+```
+## UMD bundled ES5 with babel-runtime
+* The browser ready **umd** files are bundled with *webpack*, and use the *webpack babel loader* and also the *babel runtime* (this is a **dependency**)
+* The `babel runtime` is setup in `.babelrc` - any required *helpers* and *polyfills* are referenced through ```node_module``` *require* imports during *transpilation*, and *webpack* bundles these runtime dependencies into the distributed *umd.js* files. 
+* The `dist/index.js` and it's associated files will include the `require` imports also, but of course are not bundled. 
+
+
 # Webpack library starter
 
 Webpack based boilerplate for producing libraries (Input: ES6, Output: universal library)
