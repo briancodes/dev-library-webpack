@@ -1,3 +1,5 @@
+**Cloned from:** https://github.com/krasimir/webpack-library-starter
+
 # Webpack library starter
 
 Webpack based boilerplate for producing libraries (Input: ES6, Output: universal library)
