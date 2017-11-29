@@ -1,39 +1,59 @@
+
+**Cloned from:** https://github.com/krasimir/webpack-library-starter
+
 # Key Updates
-## npm publish ready - ES5 index.js module and files
-* Should be able to run ```node ./dist/``` and the default ```index.js``` will execute
-*  For this to work, the `src/index.js`, which has ES6 `import` and `export`, needs to be transpiled by `babel`, but not `webpack` *bundled*. It will replicate a *node_modules* package in this state
-* The *package.json* will have ```"main": "dist/index.js",``` for publishing to `npm`
+## Output ES5 node module files
+* After build, can excute command ```node dist``` and the default ```index.js``` will execute
+*  The `src/index.js`, which has ES6 `import` and `export`, is transpiled by `babel`, but not `webpack` *bundled*. It is in it's *node_modules* package state
+```json
+"build:main": "babel --copy-files --out-dir dist src"
 ```
-build:main": "babel --copy-files --out-dir dist src"
-```
-The *npm* package may be used in a pure ES5 environment, without ```babel``` transpiler, so we need `babel` to transform our ES6 modules - the default is `commonjs` - this can be overrided in `./.babelrc` 
-```
-"env": {
-    "test": {
-      "presets": ["es2015"],
-      "plugins": ["lodash"] 
-    },
+* The *package.json* has ```"main": "dist/index.js"``` for publishing to `npm`
+
+The non bundled *npm* module may be used in a pure ES5 environment, so we need `babel` to output ES5 modules - the default is `commonjs` - this can be overridden in `./.babelrc` if needs be using
+```json
+"env": {   
     "production": {
-      "presets": [["es2015", { "modules": false }]],
-      "plugins": ["lodash"]
+      "presets": [["es2015", { "modules": false }]]
     },
-```
-In our case we leave the default like the 'test' example above, and don't require the *"env":* object
-```
-"presets": ["es2015"],
 ```
 
 ## UMD bundled ES5 with babel-runtime
-* The browser ready **umd** files are bundled with *webpack*, and use the *webpack babel loader* and also the *babel runtime* (this is a **dependency**)
-* The `babel runtime` is setup in `.babelrc` - any required *helpers* and *polyfills* are referenced through ```node_module``` *require* imports during *transpilation*, and *webpack* bundles these runtime dependencies into the distributed *umd.js* files. 
-* The `dist/index.js` and it's associated files will include these `babel-runtime` helper/polyfill `require` import statments also, but are not bundled at this point
+* The browser ready **umd** files are bundled with *webpack*, and use the *webpack babel loader* and also the [Babel Runtime Transform](https://babeljs.io/docs/plugins/transform-runtime/)
+  * The *babel transform runtime* needs `devDependency` and a `dependency`, and is configured in `.babelrc`
+  * Required *helpers* and *polyfills* are referenced through ```node_module``` *require* imports during *transpilation*, and *webpack* bundles these runtime dependencies into the distributed *umd.js* files 
+```json
+["transform-runtime", {
+      "helpers": true,
+      "polyfill": true,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }]
+```
 
+* The `dist/index.js` and it's associated files will include these `babel-runtime` helper/polyfill `require` import statments, but are not bundled with webpack
 
+## Updated `npm run` scripts
+```json
+"scripts": {
+    "build-all": "npm run clean && npm-run-all --parallel build:* && npm run test",
+    "clean": "rimraf dist/*",
+    "build:main": "babel --copy-files --out-dir dist src",
+    "build:umd": "webpack --env dev",
+    "build:umd.min": "webpack --env build",
+    "dev:umd": "webpack --progress --colors --watch --env dev",
+    "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
+    "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
+  }
+  ```
+
+---
+**Cloned from:** https://github.com/krasimir/webpack-library-starter
 # Webpack library starter
 
 Webpack based boilerplate for producing libraries (Input: ES6, Output: universal library)
 
-![Travis](https://travis-ci.org/krasimir/webpack-library-starter.svg?branch=master)
+Build of original upstream ![Travis](https://travis-ci.org/krasimir/webpack-library-starter.svg?branch=master)
 
 ## Features
 
