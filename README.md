@@ -1,6 +1,6 @@
+![Travis](https://travis-ci.org/briancodes/dev-library-webpack.svg?branch=master)
 
-**Cloned from:** https://github.com/krasimir/webpack-library-starter
-
+> Originally cloned from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Key Updates
 ## Output ES5 node module files
 * After build, can excute command ```node dist``` and the default ```index.js``` will run
@@ -62,12 +62,12 @@ All paths are resolved in a cross platform manner using `path.resolve()` and `pa
 
 
 ---
-**Cloned from:** https://github.com/krasimir/webpack-library-starter
+> Original Readme.md from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Webpack library starter
 
 Webpack based boilerplate for producing libraries (Input: ES6, Output: universal library)
 
-Build of original upstream ![Travis](https://travis-ci.org/krasimir/webpack-library-starter.svg?branch=master)
+![Travis](https://travis-ci.org/krasimir/webpack-library-starter.svg?branch=master)
 
 ## Features
 
