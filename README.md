@@ -41,6 +41,7 @@ The non bundled *npm* module may be used in a pure ES5 environment, so we need `
     "build:main": "babel --copy-files --out-dir dist src",
     "build:umd": "webpack --env dev",
     "build:umd.min": "webpack --env build",
+    "dev:main": "babel --copy-files --out-dir dist src --watch",
     "dev:umd": "webpack --progress --colors --watch --env dev",
     "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
