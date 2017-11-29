@@ -1,7 +1,7 @@
 /* global describe, it, before */
 
 import chai from 'chai';
-import {Cat, Dog} from '../dist/library.umd.js';
+import {Cat, Dog} from '../dist/dev-library-webpack.umd';
 
 chai.expect();
 

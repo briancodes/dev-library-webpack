@@ -3,7 +3,7 @@
 
 # Key Updates
 ## Output ES5 node module files
-* After build, can excute command ```node dist``` and the default ```index.js``` will execute
+* After build, can excute command ```node dist``` and the default ```index.js``` will run
 *  The `src/index.js`, which has ES6 `import` and `export`, is transpiled by `babel`, but not `webpack` *bundled*. It is in it's *node_modules* package state
 ```json
 "build:main": "babel --copy-files --out-dir dist src"
@@ -47,6 +47,19 @@ The non bundled *npm* module may be used in a pure ES5 environment, so we need `
     "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
   }
   ```
+## `package.json` and `webpack.config.js`
+
+I have removed all hard coded text from `webpack.config.js` - the library name, source and destination folders, and output file name are retreived from a custom field on the imported `package.json`
+```json
+"customfields": {
+    "sourceFolder": "src",
+    "outputFolder": "dist",
+    "mainFile": "index.js"
+  }
+``` 
+
+All paths are resolved in a cross platform manner using `path.resolve()` and `path.join()`
+
 
 ---
 **Cloned from:** https://github.com/krasimir/webpack-library-starter

@@ -4,18 +4,21 @@ const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const path = require('path');
 const env = require('yargs').argv.env; // use --env with webpack 2
+const PACKAGE = require('./package.json');
 
-let libraryName = 'library';
-// Relative to the __dirname, the main project folder
-let sourceEntry = '/src/index.js';
-let outputFolder = '/dist';
-
+let libraryName = PACKAGE.name;
+/** Source folder and file, relative to the __dirname e.g. src/index.js */
+let sourceEntry = path.join(PACKAGE.customfields.sourceFolder, PACKAGE.customfields.mainFile);
+let outputFolder = PACKAGE.customfields.outputFolder;
 let plugins = [], outputFile;
 
-// This will create our bundled UMD files. Suitable for the browser as wall
-// as imported as a self cocntained module.
+console.log('sourceEntry relative: ', sourceEntry);
+console.log('outputFolder: ', outputFolder);
+
+// This will create our bundled UMD files. Suitable for the browser and
+// as imported npm module.
 // We will run Babel without Webpack to export the node_module targeted
-// files that will be published to npm (not webpack bundled usising script build:main)
+// files that will be published to npm
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true, sourceMap: true }));
   outputFile = libraryName + '.umd.min.js';
@@ -24,12 +27,14 @@ if (env === 'build') {
 }
 
 console.log('Env: ' + env + ', Output File: ' + outputFile);
+console.log('config.entry: ', path.resolve(__dirname, sourceEntry));
+console.log('config.output.path: ', path.resolve(__dirname, outputFolder));
 
 const config = {
-  entry: __dirname + sourceEntry,
+  entry: path.resolve(__dirname, sourceEntry),
   devtool: 'source-map',
   output: {
-    path: __dirname + outputFolder,
+    path: path.resolve(__dirname, outputFolder),
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
@@ -50,10 +55,14 @@ const config = {
     ]
   },
   resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
+    // Giving percedence to the source folder, then node_modules
+    // see: https://webpack.js.org/configuration/resolve/#resolve-modules
+    modules: [path.resolve(__dirname, PACKAGE.customfields.sourceFolder), 'node_modules'],
     extensions: ['.json', '.js']
   },
   plugins: plugins
 };
+
+console.log('Log of config.module.resolve: ', config.resolve);
 
 module.exports = config;
