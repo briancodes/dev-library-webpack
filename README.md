@@ -1,4 +1,4 @@
-![Travis](https://travis-ci.org/briancodes/dev-library-webpack.svg?branch=master)
+![Build Status](https://travis-ci.org/briancodes/dev-library-webpack.svg?branch=master)
 
 > Originally cloned from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Key Updates
