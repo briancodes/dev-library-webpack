@@ -9,7 +9,7 @@ runTests(null, Cat, Dog);
 
 function runTests(importedModule, Cat, Dog) {
 
-  console.log('Module: ', umdModule);
+  console.log('Module: ', importedModule);
   console.log(Cat, Dog);
   Cat = importedModule ? importedModule.Cat : Cat;
   Dog = importedModule ? importedModule.Dog : Dog;

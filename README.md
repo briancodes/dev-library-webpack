@@ -31,8 +31,6 @@ The non bundled *npm* module may be used in a pure ES5 environment, so we need `
     }]
 ```
 
-* The `dist/index.js` and it's associated files will include these `babel-runtime` helper/polyfill `require` import statments, but are not bundled with webpack
-
 ## Updated `npm run` scripts
 ```json
 "scripts": {
