@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "Produce ES5 npm/umd library with webpack, babel, es6",
   "main": "dist/index.js",
+  "author": "Brian Codes",
+  "homepage": "https://github.com/briancodes/dev-library-webpack",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/briancodes/dev-library-webpack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/briancodes/dev-library-webpack/issues"
+  },
   "customfields": {
     "sourceFolder": "src",
     "outputFolder": "dist",
@@ -16,28 +26,14 @@
     "build:umd.min": "webpack --env build",
     "dev:main": "babel --copy-files --out-dir dist src --watch",
     "dev:umd": "webpack --progress --colors --watch --env dev",
-    "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
-    "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
+    "test": "npm run test-functional && npm run test-html",
+    "test-functional": "mocha --require babel-core/register --colors ./test/*.spec.js",
+    "test-html": "mocha-phantomjs --view 100x100 ./test/html/test.html",
+    "test-functional:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/briancodes/dev-library-webpack.git"
+  "dependencies": {
+    "babel-runtime": "^6.26.0"
   },
-  "keywords": [
-    "webpack",
-    "es6",
-    "starter",
-    "library",
-    "universal",
-    "umd",
-    "commonjs"
-  ],
-  "author": "Brian Codes",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/briancodes/dev-library-webpack/issues"
-  },
-  "homepage": "https://github.com/briancodes/dev-library-webpack",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -50,12 +46,20 @@
     "eslint": "^4.12.0",
     "eslint-loader": "^1.9.0",
     "mocha": "^4.0.1",
+    "mocha-phantomjs": "^4.1.0",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",
     "webpack": "^3.8.1",
     "yargs": "^10.0.3"
   },
-  "dependencies": {
-    "babel-runtime": "^6.26.0"
-  }
+  "keywords": [
+    "webpack",
+    "es6",
+    "starter",
+    "library",
+    "universal",
+    "umd",
+    "commonjs",
+    "phaontomjs"
+  ]
 }

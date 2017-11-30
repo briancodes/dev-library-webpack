@@ -60,6 +60,17 @@ I have removed all hard coded text from `webpack.config.js` - the library name, 
 
 All paths are resolved in a cross platform manner using `path.resolve()` and `path.join()`
 
+## PhantomJS Install
+
+The `"test": "mocha --require babel-core/register --colors ./test/*.spec.js"` script runs functional tests in a nodejs environment, so we can target either the `umn.js`, `umd.min.js`, or the `index.js` which will be `babel` transpiled using the `babel-core/register`
+
+For headless browser testing in a Node.js environment (using phantomjs) we have to use the bundled `umd.js` or `umd.min.js`
+
+Installed `mocha-phantomjs`, [see github page for instructions](https://github.com/nathanboktae/mocha-phantomjs)
+
+```
+$ npm install --save-dev mocha-phantomjs
+```
 
 ---
 > Original Readme.md from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)

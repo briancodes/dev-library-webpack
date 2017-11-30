@@ -5,6 +5,8 @@ logs
 #dist
 dist
 
+notes.md
+
 # Runtime data
 pids
 *.pid
