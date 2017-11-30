@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/briancodes/dev-library-webpack.svg?branch=master)
+[![Build Status](https://travis-ci.org/briancodes/dev-library-webpack.svg?branch=master)](https://travis-ci.org/briancodes/dev-library-webpack)
 
 > Originally cloned from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Key Updates
@@ -20,7 +20,7 @@ The non bundled *npm* module may be used in a pure ES5 environment, so we need `
 
 ## UMD bundled ES5 with babel-runtime
 * The browser ready **umd** files are bundled with *webpack*, and use the *webpack babel loader* and also the [Babel Runtime Transform](https://babeljs.io/docs/plugins/transform-runtime/)
-  * The *babel transform runtime* needs `devDependency` and a `dependency`, and is configured in `.babelrc`
+  * The *babel transform runtime* needs `devDependency` and the ```babel-runtime``` `dependency` for bundling helper methods and non-global polyfills (perfect for libraries!). Configured in `.babelrc`
   * Required *helpers* and *polyfills* are referenced through ```node_module``` *require* imports during *transpilation*, and *webpack* bundles these runtime dependencies into the distributed *umd.js* files 
 ```json
 ["transform-runtime", {
