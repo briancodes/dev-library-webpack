@@ -1,3 +1,5 @@
+var library = window.devLibraryWebpack;
+
 describe('Window and Document Available', function () {
   describe('Checking if document is available', function () {
     it('shoudl be an object', function () {
@@ -22,5 +24,24 @@ describe('Adding <div> element to the DOM', function () {
 
   it("Should be in the DOM with 'Testing Div' innerHTML", function () {
     (retrievedElement.innerHTML).should.equal('Testing Div');
+  });
+});
+
+describe('Given an instance of my Cat library' + window.devLibraryWebpack.toString(), function () {
+  var obj;
+
+  before(function () {
+    library = window.devLibraryWebpack;
+    obj = new library.Cat();
+  });
+  describe('when I need the name' + window.mochaPhantomJS, function () {
+    it('should return the name', function () {
+      expect(obj.name).to.be.equal('Cat');
+    });
+  });
+  describe('when I need the sound', function () {
+    it('should return the sound', function () {
+      expect(obj.sound).to.be.equal('Meow');
+    });
   });
 });

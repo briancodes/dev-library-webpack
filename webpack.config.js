@@ -3,13 +3,14 @@
 const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const path = require('path');
-const env = require('yargs').argv.env; // use --env with webpack 2
+const env = process.env.NODE_ENV; // using cross-env for cross platform env vars
 const PACKAGE = require('./package.json');
 
 let libraryName = PACKAGE.name;
 /** Source folder and file, relative to the __dirname e.g. src/index.js */
 let sourceEntry = path.join(PACKAGE.customfields.sourceFolder, PACKAGE.customfields.mainFile);
 let outputFolder = PACKAGE.customfields.outputFolder;
+let globalName = PACKAGE.customfields.globalName;
 let plugins = [], outputFile;
 
 console.log('sourceEntry relative: ', sourceEntry);
@@ -36,7 +37,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, outputFolder),
     filename: outputFile,
-    library: libraryName,
+    library: globalName, // e.g. will be window.<globalName>
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

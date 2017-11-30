@@ -71,9 +71,10 @@ Installed `mocha-phantomjs`, [see github page for instructions](https://github.c
 ```
 $ npm install --save-dev mocha-phantomjs
 ```
+> The tests must be written in ES5 for HTML, as the tests themselves are run with an imported script in the browser. There is a [workaround](https://github.com/nathanboktae/mocha-phantomjs/issues/218) -  on my TODO list
+___
 
----
-> Original Readme.md from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
+Original Readme.md from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Webpack library starter
 
 Webpack based boilerplate for producing libraries (Input: ES6, Output: universal library)
