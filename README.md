@@ -9,7 +9,8 @@
 ```
 * The *package.json* has ```"main": "dist/index.js"``` for publishing to `npm`
 
-The non bundled *npm* module may be used in a pure ES5 environment, so we need `babel` to output ES5 modules - the default is `commonjs` - this can be overridden in `./.babelrc` if needs be using
+The non bundled *npm* module may be used in a pure ES5 environment, so we need `babel` to output ES5 modules - the default is `commonjs` - this can be overridden in `./.babelrc` to leave the import statements in ES6 form e.g. if you wanted ES6 imports for a *webpack* process
+
 ```json
 "env": {   
     "production": {
