@@ -1,61 +1,66 @@
 import chai from 'chai';
 
 // Importing from both the npm module and the umd
-import { Cat, Dog } from '../dist/index.js';
+import { Client, Account } from '../dist/index.js';
 import * as umdModule from '../dist/dev-library-webpack.umd.js';
 
 const expect = chai.expect;
 
 describe('When I import the library', () => {
   describe('If we import the npm version ', () => {
-    it('should return the Cat and Dog objects', () => {
-      expect(Cat).to.exist;
-      expect(Dog).to.exist;
+    it('should return the Client and Account objects', () => {
+      expect(Client).to.exist;
+      expect(Account).to.exist;
     });
   });
   describe('If we request the umd library version', () => {
     it('should return the library', () => {
       expect(umdModule).to.exist;
-      expect(umdModule.Cat).to.exist;
-      expect(umdModule.Dog).to.exist;
+      expect(umdModule.Client).to.exist;
+      expect(umdModule.Account).to.exist;
     });
   });
 });
 
 runTests(umdModule);
-runTests(null, Cat, Dog);
+runTests(null, Client, Account);
 
-function runTests(importedModule, Cat, Dog) {
+function runTests(importedModule, ClientConstructor, AccountConstructor) {
 
   console.log('Module: ', importedModule);
-  console.log(Cat, Dog);
-  Cat = importedModule ? importedModule.Cat : Cat;
-  Dog = importedModule ? importedModule.Dog : Dog;
+  console.log(ClientConstructor, AccountConstructor);
+  ClientConstructor = importedModule ? importedModule.Client : ClientConstructor;
+  AccountConstructor = importedModule ? importedModule.Account : AccountConstructor;
   let lib;
 
-  describe('Given an instance of my Cat library', () => {
+  describe('Given an instance of my Client', () => {
     before(() => {
-      lib = new Cat();
+      lib = new ClientConstructor();
     });
     describe('when I need the name', () => {
       it('should return the name', () => {
-        expect(lib.name).to.be.equal('Cat');
+        expect(lib.name).to.be.equal('aName');
       });
     });
-    describe('when I need the sound', () => {
-      it('should return the sound', () => {
-        expect(lib.sound).to.be.equal('Meow');
+    describe('when I need the id', () => {
+      it('should return the id', () => {
+        expect(lib.clientID).to.be.equal('anID');
       });
     });
   });
 
-  describe('Given an instance of my Dog library', () => {
+  describe('Given an instance of my Account', () => {
     before(() => {
-      lib = new Dog();
+      lib = new AccountConstructor('Zurich', 'ZurichID');
     });
     describe('when I need the name', () => {
       it('should return the name', () => {
-        expect(lib.name).to.be.equal('Dog');
+        expect(lib.name).to.be.equal('Zurich');
+      });
+    });
+    describe('when I need the id', () => {
+      it('should return the id', () => {
+        expect(lib.accountID).to.be.equal('ZurichID');
       });
     });
   });

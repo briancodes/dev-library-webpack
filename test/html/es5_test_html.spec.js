@@ -33,21 +33,21 @@ describe('Adding <div> element to the DOM', function () {
   });
 });
 
-describe('Given an instance of my Cat library' + window.devLibraryWebpack.toString(), function () {
+describe('Given an instance of my Client library' + window.devLibraryWebpack.toString(), function () {
   var obj;
 
   before(function () {
     library = window.devLibraryWebpack;
-    obj = new library.Cat();
+    obj = new library.Client('BBC', 'BBC_ID');
   });
   describe('when I need the name' + window.mochaPhantomJS, function () {
     it('should return the name', function () {
-      expect(obj.name).to.be.equal('Cat');
+      expect(obj.name).to.be.equal('BBC');
     });
   });
-  describe('when I need the sound', function () {
-    it('should return the sound', function () {
-      expect(obj.sound).to.be.equal('Meow');
+  describe('when I need the id', function () {
+    it('should return the id', function () {
+      expect(obj.clientID).to.be.equal('BBC_ID');
     });
   });
 });
