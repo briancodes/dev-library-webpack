@@ -1,8 +1,14 @@
+'use strict';
+
 var library = window.devLibraryWebpack;
+var chai = window.chai; // remove the eslint var not defined warning
+
+var should = chai.should();
+var expect = chai.expect;
 
 describe('Window and Document Available', function () {
   describe('Checking if document is available', function () {
-    it('shoudl be an object', function () {
+    it('should be an object', function () {
       expect(typeof document).to.equal('object');
     });
   });

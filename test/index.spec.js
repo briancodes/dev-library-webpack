@@ -4,6 +4,24 @@ import chai from 'chai';
 import { Cat, Dog } from '../dist/index.js';
 import * as umdModule from '../dist/dev-library-webpack.umd.js';
 
+const expect = chai.expect;
+
+describe('When I import the library', () => {
+  describe('If we import the npm version ', () => {
+    it('should return the Cat and Dog objects', () => {
+      expect(Cat).to.exist;
+      expect(Dog).to.exist;
+    });
+  });
+  describe('If we request the umd library version', () => {
+    it('should return the library', () => {
+      expect(umdModule).to.exist;
+      expect(umdModule.Cat).to.exist;
+      expect(umdModule.Dog).to.exist;
+    });
+  });
+});
+
 runTests(umdModule);
 runTests(null, Cat, Dog);
 
@@ -13,7 +31,6 @@ function runTests(importedModule, Cat, Dog) {
   console.log(Cat, Dog);
   Cat = importedModule ? importedModule.Cat : Cat;
   Dog = importedModule ? importedModule.Dog : Dog;
-  const expect = chai.expect;
   let lib;
 
   describe('Given an instance of my Cat library', () => {

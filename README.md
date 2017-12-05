@@ -1,12 +1,11 @@
 ![Build Status](https://travis-ci.org/briancodes/dev-library-webpack.svg?branch=master)
 
-> Originally cloned from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Key Updates
 ## Output ES5 node module files
 * After build, can excute command ```node dist``` and the default ```index.js``` will run
 *  The `src/index.js`, which has ES6 `import` and `export`, is transpiled by `babel`, but not `webpack` *bundled*. It is in it's *node_modules* package state
 ```json
-"build:main": "babel --copy-files --out-dir dist src"
+"build:babel": "babel --copy-files --out-dir dist src"
 ```
 * The *package.json* has ```"main": "dist/index.js"``` for publishing to `npm`
 
@@ -52,6 +51,7 @@ I have removed all hard coded text from `webpack.config.js` - the library name, 
 "customfields": {
     "sourceFolder": "src",
     "outputFolder": "dist",
+    "globalName": "devLibraryWebpack",
     "mainFile": "index.js"
   }
 ``` 
@@ -70,9 +70,13 @@ Installed `mocha-phantomjs`, [see github page for instructions](https://github.c
 $ npm install --save-dev mocha-phantomjs
 ```
 > The tests must be written in ES5 for HTML, as the tests themselves are run with an imported script in the browser. There is a [workaround](https://github.com/nathanboktae/mocha-phantomjs/issues/218) -  on my TODO list
+
+## Travis CI
+
+
 ___
 
-Original Readme.md from [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
+Original Readme.md from cloned [krasimir/webpack-library-starter](https://github.com/krasimir/webpack-library-starter)
 # Webpack library starter
 
 Webpack based boilerplate for producing libraries (Input: ES6, Output: universal library)
